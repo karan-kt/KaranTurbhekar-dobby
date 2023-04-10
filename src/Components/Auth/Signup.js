@@ -70,6 +70,10 @@ const Signup = () => {
 
             })
             console.log(data);
+            setEmail("");
+            setUsername("");
+            setPassword("");
+            setRePassword("");
             setLoading(false);
         } catch (error) {
             if (!error?.response) {
@@ -111,18 +115,18 @@ const Signup = () => {
 
             <FormControl id="Email" isRequired>
                 <FormLabel>Email</FormLabel>
-                <Input type="email" placeholder="Enter your email" onChange={(e) => setEmail(e.target.value)} />
+                <Input type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
             </FormControl>
 
             <FormControl id="Username" isRequired>
                 <FormLabel>Username</FormLabel>
-                <Input type="email" placeholder="Enter your Username" onChange={(e) => setUsername(e.target.value)} />
+                <Input type="email" placeholder="Enter your Username" value={username} onChange={(e) => setUsername(e.target.value)} />
             </FormControl>
 
             <FormControl id="Password" isRequired>
                 <FormLabel>Password</FormLabel>
                 <InputGroup>
-                    <Input type={show ? "text" : "password"} placeholder="Enter your password"
+                    <Input type={show ? "text" : "password"} value={password} placeholder="Enter your password"
                         onChange={(e) => setPassword(e.target.value)} />
                     <InputRightElement width="4rem">
                         <Button h="2rem" size="sm" onClick={onShowHandler}>
@@ -134,7 +138,7 @@ const Signup = () => {
 
             <FormControl id="Re-Password" isRequired>
                 <FormLabel>Re-Password</FormLabel>
-                <Input type="password" placeholder="Re-enter your password" onChange={(e) => setRePassword(e.target.value)} />
+                <Input type="password" placeholder="Re-enter your password" value={repassword} onChange={(e) => setRePassword(e.target.value)} />
             </FormControl>
 
 

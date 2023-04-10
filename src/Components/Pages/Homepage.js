@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
     Container, Box, Text, TabList,
     Tabs, Tab, TabPanels, TabPanel
 } from '@chakra-ui/react';
 import Login from "../Auth/Login.js";
 import Signup from "../Auth/Signup.js";
+import { useNavigate } from 'react-router-dom';
 
 const HomePage = () => {
+    const navigate = useNavigate();
+    useEffect(() => {
+        const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+        if (userInfo) {
+            navigate("/mygallery")
+        }
+    }, [navigate])
+
     return (
         <Container maxW='md' centerContent>
             <Box
@@ -20,7 +29,8 @@ const HomePage = () => {
                 p={2}
                 fontFamily="PT Serif">
                 <Text fontSize="4xl"
-                    color="black">
+                    color="black"
+                    fontFamily="PT Serif">
                     My Pixie
                 </Text>
             </Box>

@@ -1,0 +1,12 @@
+.imageScroll {
+  overflow-y: scroll;
+}
+
+.imageScroll::-webkit-scrollbar {
+  display: none;
+}
+
+.imageScroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

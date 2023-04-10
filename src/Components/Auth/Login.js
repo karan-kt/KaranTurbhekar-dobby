@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import {
     VStack, FormControl, FormLabel, Input,
-    InputGroup, InputRightElement, Button, useToast
+    InputGroup, InputRightElement, Button, useToast,
 } from '@chakra-ui/react'
 import Axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
     const toast = useToast();
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -48,17 +50,36 @@ const Login = () => {
                 isClosable: true,
             })
             localStorage.setItem("userInfo", JSON.stringify(data));
+            navigate("/mygallery");
             console.log(data);
             setLoading(false);
         } catch (error) {
-            toast({
-                title: 'Error',
-                description: "Login failed",
-                status: 'error',
-                duration: 5000,
-                isClosable: true,
-            })
-            return;
+            if (!error.response) {
+                toast({
+                    title: 'Error',
+                    description: "No server response",
+                    status: 'error',
+                    duration: 5000,
+                    isClosable: true,
+                })
+            } else if (error.response?.status === 404) {
+                toast({
+                    title: 'Error',
+                    description: "page not found",
+                    status: 'error',
+                    duration: 5000,
+                    isClosable: true,
+                })
+            } else {
+                toast({
+                    title: 'Error',
+                    description: error.response.data,
+                    status: 'error',
+                    duration: 5000,
+                    isClosable: true,
+                })
+            }
+            setLoading(false);
         }
 
 

@@ -5,6 +5,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const ConnectDatabase = require('./Connection/connection');
 const userRoutes = require('./Routes/userRoutes');
+const imageRoutes = require('./Routes/imageRoutes')
 
 
 app.use(express.json());
@@ -13,7 +14,7 @@ app.use(cors());
 ConnectDatabase();
 
 app.use("/api/user", userRoutes);
-// app.use("/api/images", imageRoutes);
+app.use("/api/images", imageRoutes);
 
 
 const PORT = process.env.PORT || 5000
