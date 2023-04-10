@@ -81,6 +81,7 @@ const Signup = () => {
                     isClosable: true,
 
                 })
+
             } else if (error.response?.status === 404) {
                 toast({
                     title: 'Error',
