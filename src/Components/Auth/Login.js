@@ -3,6 +3,7 @@ import {
     VStack, FormControl, FormLabel, Input,
     InputGroup, InputRightElement, Button, useToast
 } from '@chakra-ui/react'
+import Axios from 'axios';
 
 
 const Login = () => {
@@ -17,7 +18,49 @@ const Login = () => {
         setShow(!show);
     }
 
-    const onSubmitHandler = () => {
+    const onSubmitHandler = async () => {
+        if (!email || !password) {
+            toast({
+                title: 'Error',
+                description: "Please enter the required fields",
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+            })
+            return;
+        }
+
+        try {
+            setLoading(true);
+            const config = {
+                headers: {
+                    "content-type": "application/json"
+                }
+            }
+
+            const { data } = await Axios.post("http://localhost:4000/api/user/login",
+                { email, password }, config);
+            toast({
+                title: 'Success',
+                description: "Login Successfull",
+                status: 'success',
+                duration: 5000,
+                isClosable: true,
+            })
+            localStorage.setItem("userInfo", JSON.stringify(data));
+            console.log(data);
+            setLoading(false);
+        } catch (error) {
+            toast({
+                title: 'Error',
+                description: "Login failed",
+                status: 'error',
+                duration: 5000,
+                isClosable: true,
+            })
+            return;
+        }
+
 
     }
 
@@ -46,7 +89,7 @@ const Login = () => {
             <Button w="100%"
                 colorScheme='red'
                 style={{ marginTop: "1rem" }}
-                loading={loading}
+                isLoading={loading}
                 onClick={onSubmitHandler}>
                 Login
             </Button>
