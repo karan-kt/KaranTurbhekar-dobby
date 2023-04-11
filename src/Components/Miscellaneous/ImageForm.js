@@ -136,7 +136,7 @@ const ImageForm = ({ update, setUpdate }) => {
             flexDirection="column"
             p="5px 8px 5px 8px">
 
-            <Text display="flex" justifyContent="center" fontSize="2xl">Add Your Images</Text>
+            <Text display="flex" justifyContent="center" fontSize="2xl">Add Images</Text>
 
             <VStack spacing='5px'>
                 <FormControl mt="3rem" isRequired>
@@ -150,9 +150,9 @@ const ImageForm = ({ update, setUpdate }) => {
                     <Input type="file" accept='image/*'
                         onChange={(e) => onImageHandler(e.target.files[0])} />
                 </FormControl>
-            </VStack>
 
-            <Button isLoading={loading} colorScheme='red' w="100%" onClick={onSubmitHandler}>Upload</Button>
+                <Button isLoading={loading} colorScheme='red' w="100%" onClick={onSubmitHandler}>Upload</Button>
+            </VStack>
         </Box>
     )
 }

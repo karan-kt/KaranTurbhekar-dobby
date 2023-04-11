@@ -38,5 +38,16 @@ const getImages = asyncHandler(async (req, res) => {
 
 })
 
+//http://localhost:4000/api/images/searchimages?search=karan
+const getSearchImages = asyncHandler(async (req, res) => {
+    const search = req.query.search ? (
+        { imageName: { $regex: req.query.search, $options: "i" } }
+    ) : {};
 
-module.exports = { storeImages, getImages }
+    const searchResult = await Image.find(search);
+    res.send(searchResult);
+
+})
+
+
+module.exports = { storeImages, getImages, getSearchImages }
