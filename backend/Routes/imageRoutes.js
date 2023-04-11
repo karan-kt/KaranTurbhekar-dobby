@@ -4,7 +4,7 @@ const { storeImages, getImages, getSearchImages } = require("../Controller/image
 
 router.post("/storeimages", storeImages)
 router.post("/getimages", getImages)
-router.get("/searchimages", getSearchImages);
+router.post("/searchimages", getSearchImages);
 
 
 module.exports = router;

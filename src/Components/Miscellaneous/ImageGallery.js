@@ -43,7 +43,7 @@ const ImageGallery = ({ update, setUpdate }) => {
         }
 
         try {
-            const { data } = await Axios.get(`http://localhost:4000/api/images/searchimages?search=${search}`);
+            const { data } = await Axios.post(`http://localhost:4000/api/images/searchimages?search=${search}`, { userId: user._id });
             setImageData(data);
             // setUpdate(!update);
             setLoading(false);

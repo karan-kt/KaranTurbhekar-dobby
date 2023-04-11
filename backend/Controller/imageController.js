@@ -40,9 +40,14 @@ const getImages = asyncHandler(async (req, res) => {
 
 //http://localhost:4000/api/images/searchimages?search=karan
 const getSearchImages = asyncHandler(async (req, res) => {
-    const search = req.query.search ? (
-        { imageName: { $regex: req.query.search, $options: "i" } }
-    ) : {};
+    const { userId } = req.body;
+    const search = req.query.search ?
+        {
+            $and: [
+                { imageName: { $regex: req.query.search, $options: "i" } },
+                { userId: userId }
+            ]
+        } : {};
 
     const searchResult = await Image.find(search);
     res.send(searchResult);
