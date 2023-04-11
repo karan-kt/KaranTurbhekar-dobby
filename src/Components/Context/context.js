@@ -7,7 +7,6 @@ const ContextProvider = ({ children }) => {
     const navigate = useNavigate();
     const [user, setUser] = useState();
 
-
     useEffect(() => {
         const userInfo = JSON.parse(localStorage.getItem("userInfo"));
         setUser(userInfo);
