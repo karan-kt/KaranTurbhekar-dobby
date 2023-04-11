@@ -37,7 +37,7 @@ const getImages = asyncHandler(async (req, res) => {
     }
 
 })
-
+//get searched images
 //http://localhost:4000/api/images/searchimages?search=karan
 const getSearchImages = asyncHandler(async (req, res) => {
     const { userId } = req.body;
